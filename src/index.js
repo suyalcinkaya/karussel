@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import smoothscroll from 'smoothscroll-polyfill';
+
+smoothscroll.polyfill();
 
 import styles from './style.css';
 
@@ -14,17 +17,13 @@ class Slid extends React.Component {
 
   componentDidMount() {
     if (window !== undefined) {
-      this.setState({ slideThereshold: this.slidContainerRef.current.scrollWidth / this.slidContainerRef.current.childElementCount / 2 + 3 })
-      const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
-      console.log('widthThereshold:', widthThereshold);
-      this.slidContainerRef.current.addEventListener('scroll', () => {
-        console.log('scrollLeft:', this.slidContainerRef.current.scrollLeft);
-        console.log('scrollWidth:', this.slidContainerRef.current.scrollWidth);
+      this.setState({ slideThereshold: this.slidContainerRef.current.scrollWidth / this.slidContainerRef.current.childElementCount });
 
-        if (this.slidContainerRef.current.scrollLeft > widthThereshold) {
+      this.slidContainerRef.current.addEventListener('scroll', () => {
+        if (this.slidContainerRef.current.scrollLeft > this.state.slideThereshold) {
           this.prevRef.current.style.opacity = 1;
           this.prevRef.current.style.visibility = 'visible';
-        } else if (this.slidContainerRef.current.scrollLeft < widthThereshold) {
+        } else if (this.slidContainerRef.current.scrollLeft < this.state.slideThereshold) {
           this.prevRef.current.style.opacity = 0;
           this.prevRef.current.style.visibility = 'hidden';
         }
@@ -37,17 +36,44 @@ class Slid extends React.Component {
           this.nextRef.current.style.visibility = 'visible';
         }
       });
+
+      this.slidContainerRef.current.addEventListener('click', event => {
+        console.log('document.body.getBoundingClientRect().width', document.body.getBoundingClientRect().width);
+        console.log('event.target.getBoundingClientRect():', event.target.getBoundingClientRect());
+
+        if ((event.target.getBoundingClientRect().left + event.target.getBoundingClientRect().right) / 2 < document.body.getBoundingClientRect().width / 2) {
+          console.log('Swipe left');
+          if (event.target.getBoundingClientRect().left > 0) {
+            this.slidContainerRef.current.scrollLeft -= event.target.getBoundingClientRect().left;
+          } else {
+            this.slidContainerRef.current.scrollLeft -= document.body.getBoundingClientRect().width / 2;
+          }
+        } else {
+          console.log('Swipe right');
+          this.slidContainerRef.current.scrollLeft += (event.target.getBoundingClientRect().left) / 2;
+        }
+        // event.target.scrollIntoView();
+        // console.log(this.slidContainerRef.current.childNodes.contains(event.target));
+      });
     }
   }
 
   swipeRight = () => {
-    const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
-    this.slidContainerRef.current.scrollLeft += widthThereshold;
+    // this.slidContainerRef.current.scrollLeft += this.state.slideThereshold;
+
+    this.slidContainerRef.current.scrollBy({
+      behavior: "smooth",
+      left: this.state.slideThereshold,
+    });
   }
 
   swipeLeft = () => {
-    const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
-    this.slidContainerRef.current.scrollLeft -= widthThereshold;
+    // this.slidContainerRef.current.scrollLeft -= this.state.slideThereshold;
+
+    this.slidContainerRef.current.scrollBy({
+      behavior: "smooth",
+      left: this.slidContainerRef.current.scrollLeft + this.state.slideThereshold,
+    });
   }
 
   render() {

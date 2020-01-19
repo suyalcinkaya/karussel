@@ -79,11 +79,11 @@
 }
 
 .arrows.left {
-  left: 48px;
+  left: calc(var(--gap) * 2);
   opacity: 0;
   visibility: hidden;
 }
 
 .arrows.right {
-  right: 48px;
+  right: calc(var(--gap) * 2);
 }

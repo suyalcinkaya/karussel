@@ -22,6 +22,7 @@ export default {
       sourcemap: true
     }
   ],
+  external: ['smoothscroll-polyfill'],
   plugins: [
     external(),
     postcss({
