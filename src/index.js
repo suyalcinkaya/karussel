@@ -4,44 +4,50 @@ import PropTypes from 'prop-types';
 import styles from './style.css';
 
 class Slid extends React.Component {
+  slidContainerRef = React.createRef();
+  prevRef = React.createRef();
+  nextRef = React.createRef();
+
+  state = {
+    slideThereshold: null
+  }
+
   componentDidMount() {
     if (window !== undefined) {
-      const slidContainerElem = document.getElementById('slid-container');
-      const leftArrowElem = document.querySelector('#left-arrow');
-      const rightArrowElem = document.querySelector('#right-arrow');
-      const widthThereshold = document.querySelectorAll('#slid-container > *')[2].offsetWidth / 2 + 4;
-      slidContainerElem.addEventListener('scroll', () => {
-        console.log('scrollLeft:', slidContainerElem.scrollLeft);
-        console.log('scrollWidth:', slidContainerElem.scrollWidth);
+      this.setState({ slideThereshold: this.slidContainerRef.current.scrollWidth / this.slidContainerRef.current.childElementCount / 2 + 3 })
+      const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
+      console.log('widthThereshold:', widthThereshold);
+      this.slidContainerRef.current.addEventListener('scroll', () => {
+        console.log('scrollLeft:', this.slidContainerRef.current.scrollLeft);
+        console.log('scrollWidth:', this.slidContainerRef.current.scrollWidth);
 
-        if (slidContainerElem.scrollLeft > widthThereshold) {
-          leftArrowElem.style.opacity = 1;
-          leftArrowElem.style.visibility = 'visible';
-        } else if (slidContainerElem.scrollLeft < widthThereshold) {
-          leftArrowElem.style.opacity = 0;
-          leftArrowElem.style.visibility = 'hidden';
+        if (this.slidContainerRef.current.scrollLeft > widthThereshold) {
+          this.prevRef.current.style.opacity = 1;
+          this.prevRef.current.style.visibility = 'visible';
+        } else if (this.slidContainerRef.current.scrollLeft < widthThereshold) {
+          this.prevRef.current.style.opacity = 0;
+          this.prevRef.current.style.visibility = 'hidden';
         }
 
-        if (slidContainerElem.scrollWidth - slidContainerElem.scrollLeft < 500) {
-          rightArrowElem.style.opacity = 0;
-          rightArrowElem.style.visibility = 'hidden';
-        } else if (slidContainerElem.scrollWidth - slidContainerElem.scrollLeft > 500) {
-          rightArrowElem.style.opacity = 1;
-          rightArrowElem.style.visibility = 'visible';
+        if (this.slidContainerRef.current.scrollWidth - this.slidContainerRef.current.scrollLeft < 500) {
+          this.nextRef.current.style.opacity = 0;
+          this.nextRef.current.style.visibility = 'hidden';
+        } else if (this.slidContainerRef.current.scrollWidth - this.slidContainerRef.current.scrollLeft > 500) {
+          this.nextRef.current.style.opacity = 1;
+          this.nextRef.current.style.visibility = 'visible';
         }
       });
     }
   }
 
   swipeRight = () => {
-    const widthThereshold = [...document.querySelectorAll('#slid-container > *')][2].offsetWidth / 2 + 4;
-    console.log('widthThereshold:', widthThereshold);
-    document.querySelector('.style_slidContainer__1laRs').scrollLeft += widthThereshold;
+    const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
+    this.slidContainerRef.current.scrollLeft += widthThereshold;
   }
 
   swipeLeft = () => {
-    const widthThereshold = [...document.querySelectorAll('#slid-container > *')][2].offsetWidth / 2 + 4;
-    document.querySelector('.style_slidContainer__1laRs').scrollLeft -= widthThereshold;
+    const widthThereshold = this.slidContainerRef.current.children[2].offsetWidth / 2 + 4;
+    this.slidContainerRef.current.scrollLeft -= widthThereshold;
   }
 
   render() {
@@ -49,33 +55,33 @@ class Slid extends React.Component {
     return (
       <div style={{ overflow: 'hidden', position: 'relative' }}>
         {showArrows && (
-          <div id="left-arrow" className={styles.arrows}>
-            <button onClick={() => this.swipeLeft()}>
-              <svg viewBox="0 0 18 18" role="img" aria-label="Geri" focusable="false" fill="currentcolor" style={{ height: 10, width: 10 }}><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd"></path></svg>
-            </button>
-          </div>
+          <React.Fragment>
+            <div ref={this.prevRef} id="left-arrow" className={styles.arrows + ' ' + styles.left}>
+              <button onClick={() => this.swipeLeft()}>
+                <svg viewBox="0 0 18 18" role="img" aria-label="Geri" focusable="false" fill="currentcolor" style={{ height: 10, width: 10 }}><path d="m13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z" fillRule="evenodd"></path></svg>
+              </button>
+            </div>
+            <div ref={this.nextRef} id="right-arrow" className={styles.arrows + ' ' + styles.right}>
+              <button onClick={() => this.swipeRight()}>
+                <svg viewBox="0 0 18 18" role="img" aria-label="İleri" focusable="false" fill="currentcolor" style={{ height: 10, width: 10 }}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
+              </button>
+            </div>
+          </React.Fragment>
         )}
-        <div id="slid-container" className={styles.slidContainer} {...rest}>
+        <div ref={this.slidContainerRef} id="slid-container" className={styles.slidContainer} {...rest}>
           {[...children].map((child, index) => (
             <div key={index}>
               {child}
             </div>
           ))}
         </div>
-        {showArrows && (
-          <div id="right-arrow" className={styles.arrows}>
-            <button onClick={() => this.swipeRight()}>
-              <svg viewBox="0 0 18 18" role="img" aria-label="İleri" focusable="false" fill="currentcolor" style={{ height: 10, width: 10 }}><path d="m4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z" fillRule="evenodd"></path></svg>
-            </button>
-          </div>
-        )}
       </div>
     )
   }
 }
 
 Slid.propTypes = {
-  children: PropTypes.any,
+  children: PropTypes.node,
 };
 
 export default Slid;

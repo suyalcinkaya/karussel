@@ -3,6 +3,9 @@
 }
 
 .slidContainer {
+  display: flex;  
+  align-items: stretch;  
+  width: 100%;  
   white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
@@ -12,15 +15,19 @@
   margin-top: 0;
   margin-left: calc(var(--gap) * -4);
   margin-right: calc(var(--gap) * -4);
-  -webkit-overflow-scrolling: touch;
+  -webkit-scroll-snap-destination: 0% 0%;  
+  -webkit-overflow-scrolling: touch; /* important for iOS */
   -ms-overflow-style: none;
   scrollbar-width: none;
-  -webkit-scroll-snap-type: mandatory;
-  scroll-snap-type: x mandatory;
+  scroll-snap-type: x mandatory; /* Chrome Canary */
+  scroll-snap-type: mandatory; /* Firefox */
+  -ms-scroll-snap-type: mandatory; /* IE/Edge */
+  -webkit-scroll-snap-type: mandatory; /* Safari */
   scroll-behavior: smooth;
 }
 
 .slidContainer > * {
+  flex-shrink: 0;
   display: inline-block !important;
   padding-right: var(--gap) !important;
   padding-left: var(--gap) !important;
@@ -30,6 +37,7 @@
   white-space: pre-wrap;
   word-break: break-word;
   overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .slidContainer > *:first-child {
@@ -66,14 +74,16 @@
   height: 32px;
 }
 
-.arrows:first-child {
-  top: 50%;
+.arrows {
+  top: calc(50% - (var(--gap) * 2));
+}
+
+.arrows.left {
   left: 48px;
   opacity: 0;
   visibility: hidden;
 }
 
-.arrows:last-child {
-  top: 50%;
+.arrows.right {
   right: 48px;
 }
