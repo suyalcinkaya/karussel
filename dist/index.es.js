@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import smoothscroll from 'smoothscroll-polyfill';
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
@@ -33,30 +32,6 @@ var css = ":root {\n  --gap: 6px;\n}\n\n.style_slidContainer__1laRs {\n  display
 var styles = { "slidContainer": "style_slidContainer__1laRs", "arrows": "style_arrows__3bE0A", "left": "style_left__23qnn", "right": "style_right__1o-p7" };
 styleInject(css);
 
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
 var _extends = Object.assign || function (target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i];
@@ -71,22 +46,6 @@ var _extends = Object.assign || function (target) {
   return target;
 };
 
-var inherits = function (subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function, not " + typeof superClass);
-  }
-
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
-    constructor: {
-      value: subClass,
-      enumerable: false,
-      writable: true,
-      configurable: true
-    }
-  });
-  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
-};
-
 var objectWithoutProperties = function (obj, keys) {
   var target = {};
 
@@ -99,14 +58,6 @@ var objectWithoutProperties = function (obj, keys) {
   return target;
 };
 
-var possibleConstructorReturn = function (self, call) {
-  if (!self) {
-    throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
-  }
-
-  return call && (typeof call === "object" || typeof call === "function") ? call : self;
-};
-
 var toConsumableArray = function (arr) {
   if (Array.isArray(arr)) {
     for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
@@ -117,150 +68,26 @@ var toConsumableArray = function (arr) {
   }
 };
 
-smoothscroll.polyfill();
+var Slid = function Slid(props) {
+  var children = props.children,
+      rest = objectWithoutProperties(props, ['children']);
 
-var Slid = function (_React$Component) {
-  inherits(Slid, _React$Component);
-
-  function Slid() {
-    var _ref;
-
-    var _temp, _this, _ret;
-
-    classCallCheck(this, Slid);
-
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Slid.__proto__ || Object.getPrototypeOf(Slid)).call.apply(_ref, [this].concat(args))), _this), _this.slidContainerRef = React.createRef(), _this.prevRef = React.createRef(), _this.nextRef = React.createRef(), _this.state = {
-      slideThereshold: null
-    }, _this.swipeRight = function () {
-      // this.slidContainerRef.current.scrollLeft += this.state.slideThereshold;
-
-      _this.slidContainerRef.current.scrollBy({
-        behavior: "smooth",
-        left: _this.state.slideThereshold
-      });
-    }, _this.swipeLeft = function () {
-      // this.slidContainerRef.current.scrollLeft -= this.state.slideThereshold;
-
-      _this.slidContainerRef.current.scrollBy({
-        behavior: "smooth",
-        left: _this.slidContainerRef.current.scrollLeft + _this.state.slideThereshold
-      });
-    }, _temp), possibleConstructorReturn(_this, _ret);
-  }
-
-  createClass(Slid, [{
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      var _this2 = this;
-
-      if (window !== undefined) {
-        this.setState({ slideThereshold: this.slidContainerRef.current.scrollWidth / this.slidContainerRef.current.childElementCount });
-
-        this.slidContainerRef.current.addEventListener('scroll', function () {
-          if (_this2.slidContainerRef.current.scrollLeft > _this2.state.slideThereshold) {
-            _this2.prevRef.current.style.opacity = 1;
-            _this2.prevRef.current.style.visibility = 'visible';
-          } else if (_this2.slidContainerRef.current.scrollLeft < _this2.state.slideThereshold) {
-            _this2.prevRef.current.style.opacity = 0;
-            _this2.prevRef.current.style.visibility = 'hidden';
-          }
-
-          if (_this2.slidContainerRef.current.scrollWidth - _this2.slidContainerRef.current.scrollLeft < 500) {
-            _this2.nextRef.current.style.opacity = 0;
-            _this2.nextRef.current.style.visibility = 'hidden';
-          } else if (_this2.slidContainerRef.current.scrollWidth - _this2.slidContainerRef.current.scrollLeft > 500) {
-            _this2.nextRef.current.style.opacity = 1;
-            _this2.nextRef.current.style.visibility = 'visible';
-          }
-        });
-
-        this.slidContainerRef.current.addEventListener('click', function (event) {
-          console.log('document.body.getBoundingClientRect().width', document.body.getBoundingClientRect().width);
-          console.log('event.target.getBoundingClientRect():', event.target.getBoundingClientRect());
-
-          if ((event.target.getBoundingClientRect().left + event.target.getBoundingClientRect().right) / 2 < document.body.getBoundingClientRect().width / 2) {
-            console.log('Swipe left');
-            if (event.target.getBoundingClientRect().left > 0) {
-              _this2.slidContainerRef.current.scrollLeft -= event.target.getBoundingClientRect().left;
-            } else {
-              _this2.slidContainerRef.current.scrollLeft -= document.body.getBoundingClientRect().width / 2;
-            }
-          } else {
-            console.log('Swipe right');
-            _this2.slidContainerRef.current.scrollLeft += event.target.getBoundingClientRect().left / 2;
-          }
-          // event.target.scrollIntoView();
-          // console.log(this.slidContainerRef.current.childNodes.contains(event.target));
-        });
-      }
-    }
-  }, {
-    key: 'render',
-    value: function render() {
-      var _this3 = this;
-
-      var _props = this.props,
-          children = _props.children,
-          showArrows = _props.showArrows,
-          rest = objectWithoutProperties(_props, ['children', 'showArrows']);
-
-      return React.createElement(
-        'div',
-        { style: { overflow: 'hidden', position: 'relative' } },
-        showArrows && React.createElement(
-          React.Fragment,
-          null,
-          React.createElement(
-            'div',
-            { ref: this.prevRef, id: 'left-arrow', className: styles.arrows + ' ' + styles.left },
-            React.createElement(
-              'button',
-              { onClick: function onClick() {
-                  return _this3.swipeLeft();
-                } },
-              React.createElement(
-                'svg',
-                { viewBox: '0 0 18 18', role: 'img', 'aria-label': 'Geri', focusable: 'false', fill: 'currentcolor', style: { height: 10, width: 10 } },
-                React.createElement('path', { d: 'm13.7 16.29a1 1 0 1 1 -1.42 1.41l-8-8a1 1 0 0 1 0-1.41l8-8a1 1 0 1 1 1.42 1.41l-7.29 7.29z', fillRule: 'evenodd' })
-              )
-            )
-          ),
-          React.createElement(
-            'div',
-            { ref: this.nextRef, id: 'right-arrow', className: styles.arrows + ' ' + styles.right },
-            React.createElement(
-              'button',
-              { onClick: function onClick() {
-                  return _this3.swipeRight();
-                } },
-              React.createElement(
-                'svg',
-                { viewBox: '0 0 18 18', role: 'img', 'aria-label': '\u0130leri', focusable: 'false', fill: 'currentcolor', style: { height: 10, width: 10 } },
-                React.createElement('path', { d: 'm4.29 1.71a1 1 0 1 1 1.42-1.41l8 8a1 1 0 0 1 0 1.41l-8 8a1 1 0 1 1 -1.42-1.41l7.29-7.29z', fillRule: 'evenodd' })
-              )
-            )
-          )
-        ),
-        React.createElement(
+  return React.createElement(
+    'div',
+    { style: { overflow: 'hidden', position: 'relative' } },
+    React.createElement(
+      'div',
+      _extends({ className: styles.slidContainer }, rest),
+      [].concat(toConsumableArray(children)).map(function (child, index) {
+        return React.createElement(
           'div',
-          _extends({ ref: this.slidContainerRef, id: 'slid-container', className: styles.slidContainer }, rest),
-          [].concat(toConsumableArray(children)).map(function (child, index) {
-            return React.createElement(
-              'div',
-              { key: index },
-              child
-            );
-          })
-        )
-      );
-    }
-  }]);
-  return Slid;
-}(React.Component);
+          { key: index },
+          child
+        );
+      })
+    )
+  );
+};
 
 Slid.propTypes = {
   children: PropTypes.node
