@@ -25,8 +25,8 @@ export default class App extends Component {
       "https://images.unsplash.com/photo-1551524164-687a55dd1126?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60"
     ]
     return (
-      <div style={{ display: 'flex', height: '100vh', justifyContent: 'center', flexDirection: 'column' }}>
-        <Slid showArrows>
+      <div style={{ display: 'flex', height: '100%', justifyContent: 'center', flexDirection: 'column' }}>
+        <Slid>
           {images.map((image, index) => (
             <div key={index}>
               <img src={image} height={50} width={50} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
@@ -36,7 +36,7 @@ export default class App extends Component {
         </Slid>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={80} width={80} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
@@ -47,7 +47,7 @@ export default class App extends Component {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={50} width={100} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
@@ -58,7 +58,7 @@ export default class App extends Component {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={100} width={100} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
@@ -69,10 +69,10 @@ export default class App extends Component {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
-                <img src={image} height={100} width={200} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
+                <img src={image} height={150} width={200} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
@@ -80,7 +80,7 @@ export default class App extends Component {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={200} width={300} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
@@ -91,10 +91,10 @@ export default class App extends Component {
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid showArrows>
+          <Slid>
             {images.map((image, index) => (
               <div key={index}>
-                <img src={image} height={300} width={400} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
+                <img src={image} height={300} width={300} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
