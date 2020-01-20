@@ -6,24 +6,53 @@
 
 ## Install
 
+### npm
+
 ```bash
 npm install --save karussel
+```
+
+### Yarn
+
+```bash
+yarn add karussel
 ```
 
 ## Usage
 
 ```jsx
-import React, { Component } from 'react'
-
-import Karussel from 'karussel'
+import React, { Component } from "react";
+import Karussel from "karussel";
 
 class Example extends Component {
-  render () {
+  const images = [
+    "https://images.unsplash.com/photo-1551524164-687a55dd1126?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1459535653751-d571815e906b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1556955112-28cde3817b0a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1494526585095-c41746248156?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1475855581690-80accde3ae2b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1416331108676-a22ccb276e35?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=60",
+  ];
+
+  render() {
     return (
-      <Karussel />
-    )
+      <Karussel>
+        {images.map((image, index) => (
+          <div key={index}>
+            <img
+              src={image}
+              height={200}
+              width={300}
+              alt="..."
+            />
+          </div>
+        ))}
+      </Karussel>
+    );
   }
 }
+
+export default Example;
 ```
 
 ## License
