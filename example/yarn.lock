@@ -4662,6 +4662,10 @@ jsx-ast-utils@^2.0.0:
     array-includes "^3.0.3"
     object.assign "^4.1.0"
 
+"karussel@link:..":
+  version "0.0.0"
+  uid ""
+
 killable@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/killable/-/killable-1.0.1.tgz#4c8ce441187a061c7474fb87ca08e2a638194892"
@@ -6949,10 +6953,6 @@ slice-ansi@1.0.0:
   integrity sha512-POqxBK6Lb3q6s047D/XsDVNPnF9Dl8JSaqe9h9lURl0OdNqy/ujDrOiIHtsqXMGbWWTIomRzAMaTyawAU//Reg==
   dependencies:
     is-fullwidth-code-point "^2.0.0"
-
-"slid@link:..":
-  version "0.0.0"
-  uid ""
 
 smoothscroll-polyfill@^0.4.4:
   version "0.4.4"

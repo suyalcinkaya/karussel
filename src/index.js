@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import styles from './style.css';
 
-const Slid = props => {
+const Karussel = props => {
   const { children, ...rest } = props;
   return (
     <div style={{ overflow: 'hidden', position: 'relative' }}>
-      <div className={styles.slidContainer} {...rest}>
+      <div className={styles.karusselContainer} {...rest}>
         {[...children].map((child, index) => (
           <div key={index}>
             {child}
@@ -18,8 +18,8 @@ const Slid = props => {
   )
 }
 
-Slid.propTypes = {
+Karussel.propTypes = {
   children: PropTypes.node,
 };
 
-export default Slid;
+export default Karussel;

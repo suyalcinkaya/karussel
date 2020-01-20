@@ -1,6 +1,6 @@
 {
-  "name": "slid-example",
-  "homepage": "https://suyalcinkaya.github.io/slid",
+  "name": "karussel-example",
+  "homepage": "https://suyalcinkaya.github.io/karussel",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -10,7 +10,7 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-scripts": "^1.1.4",
-    "slid": "link:..",
+    "karussel": "link:..",
     "smoothscroll-polyfill": "^0.4.4",
     "yarn": "^1.21.1"
   },

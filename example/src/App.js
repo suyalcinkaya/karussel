@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Slid from 'slid';
+import Karussel from 'karussel';
 
 export default class App extends Component {
   render() {
@@ -26,79 +26,79 @@ export default class App extends Component {
     ]
     return (
       <div style={{ display: 'flex', height: '100%', justifyContent: 'center', flexDirection: 'column' }}>
-        <Slid>
+        <Karussel>
           {images.map((image, index) => (
             <div key={index}>
               <img src={image} height={50} width={50} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
               {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
             </div>
           ))}
-        </Slid>
+        </Karussel>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={80} width={80} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={50} width={100} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={100} width={100} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={150} width={200} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={200} width={300} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
 
         <div style={{ marginTop: 20 }}>
-          <Slid>
+          <Karussel>
             {images.map((image, index) => (
               <div key={index}>
                 <img src={image} height={300} width={300} alt="" loading="lazy" style={{ objectFit: 'cover', borderRadius: 8 }} />
                 {/* <h4 style={{ marginTop: '0.5rem', marginBottom: '1rem' }}>Modern home in city center</h4> */}
               </div>
             ))}
-          </Slid>
+          </Karussel>
         </div>
       </div>
     )
