@@ -2,7 +2,7 @@
 
 > A minimal React based carousel/slider component
 
-[![NPM](https://img.shields.io/npm/v/karussel.svg)](https://www.npmjs.com/package/karussel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/karussel.svg)](https://www.npmjs.com/package/karussel) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com) ![npm bundle size](https://img.shields.io/bundlephobia/minzip/karussel) ![NPM](https://img.shields.io/npm/l/karussel)
 
 ## Install
 
