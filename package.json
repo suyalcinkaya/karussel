@@ -1,10 +1,10 @@
 {
-  "name": "slid",
+  "name": "karussel",
   "version": "1.0.0",
   "description": "A minimal React based carousel/slider component",
   "author": "suyalcinkaya",
   "license": "MIT",
-  "repository": "suyalcinkaya/slid",
+  "repository": "suyalcinkaya/karussel",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
